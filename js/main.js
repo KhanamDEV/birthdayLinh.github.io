@@ -23,8 +23,24 @@ $(document).ready(function () {
     $('.wrap-banner').show();
   });
   $(".button-failed button").click(function () {
-   $("#exampleModal").modal('show');
+    if(amountHate >=5){
+    $(".button-failed").css({'position': 'unset'});
+      $("#exampleModal").modal('show');
+      amountHate = 0;
+    } else{
+      amountHate++;
+
+      let parent = $(this).parent();
+      let clientHeight = $(window).outerHeight()/2;
+      let clientWidth = $(window).outerWidth() - 100;
+      let x = Math.floor(Math.random()*clientWidth);
+      let y = Math.floor(Math.random()*clientHeight);
+      parent.css({"position" : 'absolute', "top" : y, "left" : x});
+    }
+    
   });
+  $("#reset").click(function(){
+  })
 	$("#change-content").keyup(function (e) {
     $('footer').hide();
 		let contentReplace = "";
