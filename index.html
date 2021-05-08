@@ -1,77 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Happy Birthday Linhhh</title>
-    <link rel="shortcut icon" type="image/png" href="./images/banner.jpg">
-    <link rel="stylesheet" href="./css/bootstrap.min.css" />
-		<link rel="stylesheet" href="./css/style.css" />
-	</head>
-	<body>
-		<div id="waiting" class="active">
-      <p>Chờ một xíu nha hí hí</p>
-      <img src="./images/wait.webp" alt="">
-      <div class="progress">
-        <div class="progress-bar" id="main-process" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
-      </div>
-    </div>
-		<header>
-			<div class="container">
-			</div>
-    </header>
-    <main id="main-container">
-      <div class="container">
-        <section id="question">
-            <h1>Em muốn cái gì nàoooo???</h1>
-            <p>Nếu mà tắt cái này đi là đấm đấyyyy</p>
-        </section>
-        <section id="wrap-select"> 
-          <div class="container">
-            <div class="group-button">
-              <div class="button-success wrap-button">
-                <img src="./images/cute.webp" alt="">
-                <button class="btn btn-success mt-3">Viết stk nhó :))</button>
-              </div>
-              <div class="button-failed wrap-button">
-                <img src="./images/angry.webp" alt="">
-                <button class="btn btn-danger mt-3">Nghe tau chúc</button>
-              </div>
-            </div>
-            <div class="wrap-banner">
-              <img src="./images/banner.jpg" alt="">
-            </div>
-            <div class="wrap-form">
-              <div class="form-group">
-                <label for="">Viết số tài khoản điiiiii</label>
-                <textarea name="" class="form-control" id="change-content" cols="10" rows="3"></textarea>
-              </div>
-            </div>
-          </div>
-        </section>  
-      </div>
-    </main>
-    <footer>
-      <div class="container">
-        <p>Chúc mừng ngày đặc biệt của Linhhh</p>
-      </div>
-    </footer>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-body">
-            <p>Snvv , xinh đẹp hơn, học giỏi hơn, tay to hơn nháaaaaa
-              Iu thương <br> ❤</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" id="reset" class="btn btn-secondary" data-dismiss="modal">Cảm ơn Dươngggg</button>
-          </div>
-        </div>
-      </div>
-    </div>
-		<script src="./js/jquery-3.4.1.min.js"></script>
-		<script src="./js/bootstrap.min.js"></script>
-		<script src="./js/main.js"></script>
-	
-	</body>
+<html>
+<head>
+    <title>Three.js Periodic Table Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background-color: #000000;
+            margin: 0;
+            font-family: Helvetica, sans-serif;;
+            overflow: hidden;
+        }
+
+        a {
+            color: #ffffff;
+        }
+
+        #menu {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .element {
+            width: 120px;
+            height: 160px;
+            box-shadow: 0px 0px 12px #ffc1b673;
+            border: 1px solid #ffc1b6;
+            text-align: center;
+            cursor: default;
+
+        }
+
+        .element:hover {
+            box-shadow: 0px 0px 12px #ffc1b6;
+            border: 1px solid #ffc1b6;
+            /* backdrop-filter: blur(16px); */
+        }
+
+        .element .number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 12px;
+            color: #ffc1b6;
+        }
+
+        .element .symbol {
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            font-size: 60px;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.75);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.95);
+        }
+
+        .element img{width: 120px;
+            height: 160px; object-fit: cover;}
+
+        .element .details {
+            position: absolute;
+            bottom: 15px;
+            left: 0px;
+            right: 0px;
+            font-size: 12px;
+            color: #ffc1b6;
+        }
+
+        button {
+            color: #ffc1b6;
+            background: transparent;
+            outline: 1px solid #ffc1b6;
+            border: 0px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ffc1b66b;
+            color: white;
+        }
+
+        button:active {
+            color: #000000;
+            background-color: rgba(0, 255, 255, 0.75);
+        }
+        #author{position:  absolute; top: 0; left: 10px; color: #ffc1b6; font-size: 12px;}
+    </style>
+</head>
+<body>
+
+<script src="./lib/three.js"></script>
+<script src="./lib/Tween.min.js"></script>
+<script src="./lib/controls/TrackballControls.js"></script>
+<script src="./lib/renderers/CSS3DRenderer.js"></script>
+
+<div id="container"></div>
+<h3 id="author">from 𝙷𝚎𝚕𝚕𝚘 𝙺𝚒𝚝𝚝𝚢 🦁 with love</h3>
+
+<div id="menu">
+    <button id="table">TABLE</button>
+    <button id="sphere">SPHERE</button>
+    <button id="helix">HELIX</button>
+    <button id="grid">GRID</button>
+</div>
+<script src="./main.js"></script>
+<script>
+  (function() {
+   document.querySelector("#container > div").style.perspective = '500px';
+
+})();
+</script>
+</body>
 </html>
